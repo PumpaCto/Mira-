@@ -2,19 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Body default settings */
+/* Body genel ayarları */
 body {
   background-color: black;
   color: white;
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
-/* Smooth scroll behavior */
+/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom hover effects */
+/* Link hover efekti */
 a:hover {
   opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+/* Yıldızlı arka plan efekti */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveStars 60s linear infinite;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+/* Yıldızların yavaş hareket animasyonu */
+@keyframes moveStars {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-25px, -25px);
+  }
 }

@@ -2,48 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Body genel ayarları */
 body {
-  background-color: black;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-/* Smooth scroll */
-html {
+  background-color: #010314;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
 
-/* Link hover efekti */
-a:hover {
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-/* Yıldızlı arka plan efekti */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(white 1px, transparent 1px);
-  background-size: 50px 50px;
+/* Stars Animation */
+.bg-stars {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4e/Stars_Bg.png');
+  background-size: cover;
   animation: moveStars 60s linear infinite;
-  opacity: 0.08;
-  z-index: -1;
+  z-index: 0;
 }
 
-/* Yıldızların yavaş hareket animasyonu */
 @keyframes moveStars {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-25px, -25px);
-  }
+  0% { background-position: 0 0; }
+  100% { background-position: 10000px 5000px; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

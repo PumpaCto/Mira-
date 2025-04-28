@@ -7,13 +7,13 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className="relative min-h-screen bg-[#010314] text-white overflow-hidden">
-      {/* Yıldız Arka Plan */}
+      {/* Stars Background */}
       <StarsBackground />
 
       {/* Navbar */}
       <Navbar />
 
-      {/* Ana İçerik */}
+      {/* Main Content */}
       <main className="flex flex-col items-center justify-center h-screen relative z-10 px-6 text-center">
         <img src="/logo.png" alt="Miraverse Logo" className="w-32 mb-6" />
 
@@ -22,7 +22,7 @@ export default function Home() {
         </h1>
 
         <p className="text-lg md:text-2xl mb-8 text-gray-300 max-w-2xl">
-          "A New Dimension of Crypto Awaits."
+          Anime, Gaming, and Web3 worlds united — the next generation crypto experience.
         </p>
 
         <Link href="#">
@@ -30,6 +30,11 @@ export default function Home() {
             Coming Soon
           </span>
         </Link>
+
+        {/* Footer */}
+        <footer className="mt-8 text-sm text-gray-500">
+          © 2025 Miraverse Token. All rights reserved.
+        </footer>
       </main>
     </div>
   );

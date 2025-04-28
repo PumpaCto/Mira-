@@ -1,33 +1,36 @@
 'use client';
 
+import StarsBackground from './components/StarsBackground';
 import Navbar from './components/Navbar';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-[#010314] to-[#05081b] overflow-hidden flex flex-col items-center justify-center text-white">
+    <div className="relative min-h-screen bg-[#010314] text-white overflow-hidden">
+      {/* Yıldız Arka Plan */}
+      <StarsBackground />
+
+      {/* Navbar */}
       <Navbar />
 
-      {/* Yıldızlı arka plan */}
-      <div className="absolute inset-0 z-0">
-        <div className="bg-[url('/stars.gif')] bg-cover bg-center w-full h-full opacity-20 animate-pulse"></div>
-      </div>
+      {/* Ana İçerik */}
+      <main className="flex flex-col items-center justify-center h-screen relative z-10 px-6 text-center">
+        <img src="/logo.png" alt="Miraverse Logo" className="w-32 mb-6" />
 
-      {/* İçerik */}
-      <div className="relative z-10 flex flex-col items-center text-center mt-32 p-8">
-        <img src="/logo.png" alt="Miraverse Logo" className="h-28 mb-8 animate-fade-down" />
-
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 animate-pulse">
           Miraverse Token
         </h1>
 
-        <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mb-8 animate-fade-up">
-          "Where Crypto meets the Anime Universe"
+        <p className="text-lg md:text-2xl mb-8 text-gray-300 max-w-2xl">
+          "A New Dimension of Crypto Awaits."
         </p>
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full text-lg animate-fade-up">
-          Coming Soon
-        </button>
-      </div>
-    </main>
+        <Link href="#">
+          <span className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300">
+            Coming Soon
+          </span>
+        </Link>
+      </main>
+    </div>
   );
 }

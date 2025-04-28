@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Tokenomics from "@/components/Tokenomics"; // İMPORT EN ÜSTE GELİR
 
 export default function Page() {
   const [text, setText] = useState('');
@@ -33,6 +34,7 @@ export default function Page() {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-blue-950 to-black text-white overflow-hidden font-poppins">
+      
       {/* Stars Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="animate-stars w-full h-full bg-repeat bg-[url('/stars.png')] opacity-20"></div>
@@ -147,9 +149,10 @@ export default function Page() {
       <footer className="text-gray-500 mb-6 text-sm">
         © 2025 MiraVerse Token. All rights reserved.
       </footer>
+
+      {/* Şimdi burada Tokenomics komponentini çağırıyorsun */}
+      <Tokenomics />
+
     </div>
   );
-}        
-import Tokenomics from "@/components/Tokenomics";
-...
-<Tokenomics />
+}

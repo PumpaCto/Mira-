@@ -1,157 +1,152 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Link from 'next/link';
-import StarsBackground from './components/StarsBackground';
+import { useEffect, useState } from 'react';
 
-export default function Home() {
+export default function Page() {
+  const [text, setText] = useState('');
+  const slogans = [
+    "Beyond Limits. Beyond Galaxies.",
+    "Miraverse Token: Redefining Crypto.",
+    "Your Universe of Endless Possibilities."
+  ];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex(prev => (prev + 1) % slogans.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    let i = 0;
+    const typing = setInterval(() => {
+      setText(slogans[index].slice(0, i));
+      i++;
+      if (i > slogans[index].length) {
+        clearInterval(typing);
+      }
+    }, 100);
+    return () => clearInterval(typing);
+  }, [index]);
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#010314] via-[#0a0f2b] to-[#000] overflow-hidden text-white flex flex-col items-center justify-center px-4">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black via-blue-950 to-black text-white overflow-hidden font-poppins">
+      {/* Stars Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="animate-stars w-full h-full bg-repeat bg-[url('/stars.png')] opacity-20"></div>
+      </div>
 
-      {/* Background Stars */}
-      <StarsBackground />
-
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="flex flex-col items-center z-10 text-center py-20"
-      >
-        <Image
+      {/* Logo */}
+      <div className="z-10 mt-10">
+        <motion.img
           src="/logo.png"
-          alt="Miraverse Token"
-          width={180}
-          height={180}
-          className="mb-6 animate-pulse"
+          alt="Miraverse Logo"
+          className="w-32 h-32 mx-auto rounded-full shadow-lg border-2 border-blue-500"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2 }}
         />
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-          Welcome to <span className="text-yellow-400">Miraverse Token</span>
-        </h1>
-        <p className="text-lg md:text-xl max-w-3xl mb-8 text-gray-300">
-          Explore a new dimension where anime, gaming, and Web3 collide in a revolutionary token ecosystem.
-        </p>
-        <div className="flex gap-4 flex-wrap justify-center">
-          <Link href="#">
-            <button className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 rounded-full transition">
-              Buy Now
-            </button>
-          </Link>
-          <Link href="#">
-            <button className="border-2 border-yellow-400 hover:bg-yellow-500 hover:text-black text-yellow-400 font-bold py-3 px-8 rounded-full transition">
-              Coming Soon
-            </button>
-          </Link>
-        </div>
-      </motion.div>
+      </div>
 
-      {/* Scroll Down Indicator */}
-      <motion.div
+      {/* Slogan */}
+      <motion.h1
+        className="text-5xl md:text-7xl font-bold mt-8 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-blue-500"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5 }}
+      >
+        {text}
+      </motion.h1>
+
+      {/* Description */}
+      <motion.p
+        className="text-lg md:text-2xl mt-6 text-gray-300 max-w-2xl text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
-        className="absolute bottom-10 z-10"
+        transition={{ delay: 1, duration: 1.5 }}
       >
-        <span className="text-gray-400 animate-bounce">↓ Scroll</span>
+        Explore the limitless universe of decentralized possibilities with Miraverse Token.
+      </motion.p>
+
+      {/* Buy Now Button */}
+      <motion.a
+        href="#"
+        className="mt-10 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-lg font-bold shadow-lg hover:scale-105 transition transform"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
+        Buy Now (Coming Soon)
+      </motion.a>
+
+      {/* Feature Cards */}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 px-8 max-w-6xl z-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
+        }}
+      >
+        {[
+          { title: 'Tokenomics', desc: 'A sustainable economy designed to reward our community.' },
+          { title: 'Community', desc: 'Join a passionate group of visionaries shaping the future.' },
+          { title: 'Roadmap', desc: 'Milestones that guide us through uncharted galaxies.' }
+        ].map((item, idx) => (
+          <motion.div
+            key={idx}
+            className="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transform transition"
+            whileHover={{ scale: 1.05 }}
+          >
+            <h3 className="text-2xl font-bold mb-2 text-gradient bg-gradient-to-r from-yellow-400 to-blue-400">{item.title}</h3>
+            <p className="text-gray-400">{item.desc}</p>
+          </motion.div>
+        ))}
       </motion.div>
 
-      {/* About Section */}
-      <section className="w-full max-w-6xl py-24 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl font-bold mb-6"
-        >
-          About Miraverse
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-3xl mx-auto text-gray-300 text-lg"
-        >
-          Miraverse Token isn't just a cryptocurrency. It's a bridge between fandom, creativity, and decentralized technology. Get ready to join a world of limitless possibilities where you can play, earn, and rule.
-        </motion.p>
-      </section>
-
-      {/* Features Section */}
-      <section className="w-full max-w-6xl py-24 grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-900 rounded-lg p-8"
-        >
-          <h3 className="text-2xl font-semibold mb-4 text-yellow-400">Web3 Gaming</h3>
-          <p className="text-gray-300">
-            Dive into immersive games powered by the blockchain where your progress truly matters.
-          </p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-gray-900 rounded-lg p-8"
-        >
-          <h3 className="text-2xl font-semibold mb-4 text-yellow-400">Anime Universe</h3>
-          <p className="text-gray-300">
-            Experience an anime-styled metaverse where your NFT heroes come to life.
-          </p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gray-900 rounded-lg p-8"
-        >
-          <h3 className="text-2xl font-semibold mb-4 text-yellow-400">DeFi Opportunities</h3>
-          <p className="text-gray-300">
-            Stake, earn rewards, and contribute to shaping the future of decentralized worlds.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* Community Section */}
-      <section className="w-full max-w-4xl py-24 text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl font-bold mb-6"
-        >
-          Join Our Community
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-2xl mx-auto text-gray-300 text-lg mb-8"
-        >
-          Connect with us on Telegram and Twitter to stay updated, join conversations, and become a pioneer of the Miraverse revolution!
-        </motion.p>
-        <div className="flex justify-center gap-6">
-          <Link href="https://t.me/MiraVerseToken" target="_blank" className="hover:text-yellow-400 text-xl font-semibold">
-            Telegram
-          </Link>
-          <Link href="https://x.com/MiraVersaToken?s=09" target="_blank" className="hover:text-yellow-400 text-xl font-semibold">
-            Twitter
-          </Link>
+      {/* Timeline Section */}
+      <div className="relative w-full flex flex-col items-center my-32">
+        <h2 className="text-4xl font-bold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-blue-500">Roadmap</h2>
+        <div className="flex flex-col space-y-10 max-w-2xl">
+          {[
+            { year: "Q2 2025", event: "Token Launch via Pump.fun" },
+            { year: "Q3 2025", event: "1000+ Holders Milestone" },
+            { year: "Q4 2025", event: "NFT Collection Launch" },
+            { year: "Q1 2026", event: "Mobile Game Release" }
+          ].map((step, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: idx % 2 === 0 ? -100 : 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="bg-gray-800 p-6 rounded-lg shadow-lg"
+            >
+              <h4 className="text-2xl font-semibold">{step.year}</h4>
+              <p className="text-gray-400">{step.event}</p>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      </div>
+
+      {/* Socials */}
+      <div className="flex space-x-6 my-10 z-10">
+        <a href="https://t.me/MiraVerseToken" target="_blank" className="hover:scale-110 transition transform">
+          <p className="text-gray-400 hover:text-blue-400">Telegram</p>
+        </a>
+        <a href="https://x.com/MiraVersaToken?s=09" target="_blank" className="hover:scale-110 transition transform">
+          <p className="text-gray-400 hover:text-blue-400">Twitter</p>
+        </a>
+      </div>
 
       {/* Footer */}
-      <footer className="text-gray-500 text-xs py-6">
-        © 2025 Miraverse Token. All rights reserved.
+      <footer className="text-gray-500 mb-6 text-sm">
+        © 2025 MiraVerse Token. All rights reserved.
       </footer>
     </div>
   );
-}
+}        

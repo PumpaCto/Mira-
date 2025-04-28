@@ -150,3 +150,6 @@ export default function Page() {
     </div>
   );
 }        
+import Tokenomics from "@/components/Tokenomics";
+...
+<Tokenomics />

@@ -2,89 +2,87 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#010314] to-[#0c0f30] flex flex-col items-center justify-center relative overflow-hidden text-white">
-      
-      {/* Stars Background */}
-      <div className="absolute inset-0 bg-stars opacity-20 z-0"></div>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-stars text-white p-8">
+      {/* Logo with animation */}
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1 }}
+        className="mb-8"
+      >
+        <Image 
+          src="/logo.png" 
+          alt="Miraverse Token Logo" 
+          width={200} 
+          height={200} 
+          className="rounded-full"
+        />
+      </motion.div>
 
-      {/* Main Content */}
-      <div className="z-10 p-8 text-center flex flex-col items-center">
+      {/* Heading with animation */}
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="text-5xl font-bold mb-6 text-center"
+      >
+        Welcome to <span className="text-orange-400">Miraverse Token</span>
+      </motion.h1>
 
-        {/* Logo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="mb-8"
-        >
-          <Image
-            src="/logo.png"
-            alt="Miraverse Token Logo"
-            width={180}
-            height={180}
-            priority
-          />
-        </motion.div>
+      {/* Subheading */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        className="text-xl text-gray-300 max-w-2xl text-center mb-10"
+      >
+        A new universe of possibilities is coming.  
+        Dive into the future of Anime, Gaming, and Web3 innovation on Solana blockchain.  
+        Stay tuned for the revolution!
+      </motion.p>
 
-        {/* Title */}
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold mb-6"
-          initial={{ opacity: 0, y: -40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
-        >
-          Welcome to <span className="text-orange-400">Miraverse Token</span>
-        </motion.h1>
-
-        {/* Description */}
-        <motion.p
-          className="text-lg md:text-2xl text-gray-300 mb-10"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4 }}
-        >
-          A new universe of possibilities is coming soon. Stay tuned for the revolution on Solana!
-        </motion.p>
-
-        {/* Buttons */}
-        <motion.div
-          className="flex flex-col md:flex-row gap-6 justify-center mb-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6 }}
-        >
-          <a
-            href="https://x.com/MiraVersaToken?s=09"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-orange-400 hover:bg-orange-500 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-md"
-          >
-            Twitter
-          </a>
-          <a
-            href="https://t.me/MiraVerseToken"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-md"
-          >
-            Telegram
-          </a>
-          <button
-            disabled
-            className="border border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 shadow-md"
-          >
+      {/* Buttons */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.9 }}
+        className="flex space-x-4 mb-10"
+      >
+        <Link href="#">
+          <button className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-6 rounded-full text-lg">
+            Buy Now
+          </button>
+        </Link>
+        <Link href="#">
+          <button className="border-2 border-orange-400 hover:bg-orange-400 hover:text-white text-orange-400 font-bold py-2 px-6 rounded-full text-lg">
             Coming Soon
           </button>
-        </motion.div>
+        </Link>
+      </motion.div>
 
-        {/* Footer */}
-        <p className="text-gray-500 text-sm">
-          © 2025 Miraverse Token. All rights reserved.
-        </p>
-      </div>
+      {/* Social Links */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="flex space-x-8 text-lg underline underline-offset-4"
+      >
+        <a href="https://t.me/MiraVerseToken" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400">
+          Telegram
+        </a>
+        <a href="https://x.com/MiraVersaToken?s=09" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400">
+          Twitter
+        </a>
+      </motion.div>
+
+      {/* Footer */}
+      <footer className="mt-16 text-gray-500 text-sm">
+        © 2025 Miraverse Token. All rights reserved.
+      </footer>
     </div>
   );
 }

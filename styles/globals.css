@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Body General Settings */
 body {
   background-color: #010314;
   color: #ffffff;
@@ -9,24 +10,26 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Stars Animation */
+/* Headers Styling */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Link Styling */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Animated Stars Background */
 .bg-stars {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4e/Stars_Bg.png');
   background-size: cover;
-  animation: moveStars 60s linear infinite;
-  z-index: 0;
+  background-repeat: repeat;
+  animation: moveStars 120s linear infinite;
 }
 
 @keyframes moveStars {
   0% { background-position: 0 0; }
   100% { background-position: 10000px 5000px; }
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }

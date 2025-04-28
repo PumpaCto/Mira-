@@ -1,24 +1,32 @@
+'use client';
+
 import Navbar from './components/Navbar';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#02050f] to-[#0b1120] flex flex-col items-center justify-center relative overflow-hidden">
+    <main className="relative min-h-screen bg-gradient-to-b from-[#010314] to-[#05081b] overflow-hidden flex flex-col items-center justify-center text-white">
       <Navbar />
-      <div className="text-center mt-20 p-8">
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-down">
-          Welcome to <span className="text-blue-400">Miraverse</span>
-        </h1>
-        <p className="text-lg md:text-xl text-gray-300 mb-8 animate-fade-up">
-          Your gateway to the future of crypto entertainment.
-        </p>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg animate-fade-up">
-          Coming Soon
-        </button>
+
+      {/* Yıldızlı arka plan */}
+      <div className="absolute inset-0 z-0">
+        <div className="bg-[url('/stars.gif')] bg-cover bg-center w-full h-full opacity-20 animate-pulse"></div>
       </div>
 
-      {/* Arka planda kayan yıldız efekti */}
-      <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
-        <div className="w-full h-full bg-stars animate-stars"></div>
+      {/* İçerik */}
+      <div className="relative z-10 flex flex-col items-center text-center mt-32 p-8">
+        <img src="/logo.png" alt="Miraverse Logo" className="h-28 mb-8 animate-fade-down" />
+
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">
+          Miraverse Token
+        </h1>
+
+        <p className="text-lg md:text-2xl text-gray-300 max-w-2xl mb-8 animate-fade-up">
+          "Where Crypto meets the Anime Universe"
+        </p>
+
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full text-lg animate-fade-up">
+          Coming Soon
+        </button>
       </div>
     </main>
   );

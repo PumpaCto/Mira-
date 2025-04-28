@@ -25,8 +25,22 @@ export default function Home() {
           Anime, Gaming, and Web3 worlds united — the next generation crypto experience.
         </p>
 
+        <div className="flex space-x-6 mb-6">
+          <Link href="https://x.com/MiraVersaToken?s=09" target="_blank">
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all duration-300">
+              Twitter
+            </span>
+          </Link>
+
+          <Link href="https://t.me/MiraVerseToken" target="_blank">
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all duration-300">
+              Telegram
+            </span>
+          </Link>
+        </div>
+
         <Link href="#">
-          <span className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300">
+          <span className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-yellow-500 hover:to-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300">
             Coming Soon
           </span>
         </Link>

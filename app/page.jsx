@@ -1,46 +1,25 @@
-'use client';
+import Navbar from './components/Navbar';
 
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-black via-[#010314] to-black text-white">
-      <motion.img
-        src="/logo.png"
-        alt="Miraverse Logo"
-        className="w-48 h-48 mb-8"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1 }}
-      />
-      <motion.h1
-        className="text-4xl md:text-6xl font-bold text-center mb-4"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        Miraverse Token
-      </motion.h1>
-      <motion.p
-        className="text-lg md:text-2xl text-center mb-8 max-w-2xl"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-      >
-        Anime, Oyun ve Web3 dünyasını birleştiren yeni nesil kripto deneyimi.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 1.5 }}
-      >
-        <Link href="#">
-          <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg">
-            Coming Soon
-          </button>
-        </Link>
-      </motion.div>
+    <main className="min-h-screen bg-gradient-to-b from-[#02050f] to-[#0b1120] flex flex-col items-center justify-center relative overflow-hidden">
+      <Navbar />
+      <div className="text-center mt-20 p-8">
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-down">
+          Welcome to <span className="text-blue-400">Miraverse</span>
+        </h1>
+        <p className="text-lg md:text-xl text-gray-300 mb-8 animate-fade-up">
+          Your gateway to the future of crypto entertainment.
+        </p>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full text-lg animate-fade-up">
+          Coming Soon
+        </button>
+      </div>
+
+      {/* Arka planda kayan yıldız efekti */}
+      <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
+        <div className="w-full h-full bg-stars animate-stars"></div>
+      </div>
     </main>
   );
 }

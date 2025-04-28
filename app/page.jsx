@@ -1,54 +1,69 @@
 'use client';
 
-import StarsBackground from './components/StarsBackground';
-import Navbar from './components/Navbar';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="relative min-h-screen bg-[#010314] text-white overflow-hidden">
-      {/* Stars Background */}
-      <StarsBackground />
+    <div className="min-h-screen bg-gradient-to-b from-[#010314] to-[#0c0f30] text-white flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Stars background */}
+      <div className="absolute inset-0 bg-stars opacity-30 z-0"></div>
 
-      {/* Navbar */}
-      <Navbar />
+      {/* Content */}
+      <div className="z-10 p-8 text-center">
+        <motion.img
+          src="/logo.png"
+          alt="Miraverse Token Logo"
+          className="w-32 h-32 mx-auto mb-6"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        />
 
-      {/* Main Content */}
-      <main className="flex flex-col items-center justify-center h-screen relative z-10 px-6 text-center">
-        <img src="/logo.png" alt="Miraverse Logo" className="w-32 mb-6" />
+        <motion.h1
+          className="text-4xl md:text-6xl font-bold mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+        >
+          Welcome to Miraverse Token
+        </motion.h1>
 
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-4 animate-pulse">
-          Miraverse Token
-        </h1>
+        <motion.p
+          className="text-lg md:text-2xl mb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+        >
+          Your Gateway to the Future of Crypto and Entertainment
+        </motion.p>
 
-        <p className="text-lg md:text-2xl mb-8 text-gray-300 max-w-2xl">
-          Anime, Gaming, and Web3 worlds united — the next generation crypto experience.
-        </p>
-
-        <div className="flex space-x-6 mb-6">
-          <a href="https://x.com/MiraVersaToken?s=09" target="_blank" rel="noopener noreferrer">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all duration-300">
-              Twitter
-            </span>
+        {/* Buttons */}
+        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center">
+          <a
+            href="https://x.com/MiraVersaToken?s=09"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-400 hover:to-blue-600 text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition transform"
+          >
+            Twitter
           </a>
-
-          <a href="https://t.me/MiraVerseToken" target="_blank" rel="noopener noreferrer">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white px-6 py-2 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition-all duration-300">
-              Telegram
-            </span>
+          <a
+            href="https://t.me/MiraVerseToken"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-400 hover:to-blue-600 text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition transform"
+          >
+            Telegram
           </a>
+          <Link
+            href="#"
+            className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-blue-400 hover:to-green-500 text-white px-6 py-3 rounded-full text-lg font-semibold shadow-md hover:scale-105 transition transform"
+          >
+            Buy Now (Coming Soon)
+          </Link>
         </div>
-
-        <div>
-          <button className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-yellow-500 hover:to-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:scale-105 transition-all duration-300">
-            Coming Soon
-          </button>
-        </div>
-
-        {/* Footer */}
-        <footer className="mt-8 text-sm text-gray-500">
-          © 2025 Miraverse Token. All rights reserved.
-        </footer>
-      </main>
+      </div>
     </div>
   );
 }
